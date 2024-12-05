@@ -11,7 +11,9 @@ func getLines() []string {
 9 7 6 2 1
 1 3 2 4 5
 8 6 4 4 1
-1 3 6 7 9`
+1 3 6 7 9
+9 5 4 3 1
+1 3 4 5 9`
 	return strings.Split(text, "\n")
 }
 
@@ -24,10 +26,10 @@ func TestDay2Part1(t *testing.T) {
 	}
 }
 
-func TestDay1Part2(t *testing.T) {
+func TestDay2Part2(t *testing.T) {
 	lines := getLines()
 	got := Part2(lines)
-	want := 31
+	want := 6
 	if got != want {
 		t.Errorf("got %d want %d", got, want)
 	}

@@ -19,39 +19,62 @@ func Part1(input []string) int {
 	safeReports := 0
 	for _, line := range input {
 		report := getReport(line)
-		if isSafe(report) {
+		if isSafe(report, 0) {
 			safeReports = safeReports + 1
 		}
 	}
-	return 0
+	return safeReports
 }
 
 func Part2(input []string) int {
-	return 0
+	safeReports := 0
+	for _, line := range input {
+		report := getReport(line)
+		if isSafe(report, 1) {
+			safeReports = safeReports + 1
+		}
+	}
+	return safeReports
 }
 
-func isSafe(report []int) bool {
-	delta := report[1] - report[0]
-	last := report[1]
-	for _, el := range report[2:] {
+func isSafe(report []int, tolerance int) bool {
+	if tolerance == -1 {
+		return false
+	}
+	ascending := false
+	last := 0
+	for key, el := range report {
+		if key == 0 {
+			last = el
+			continue
+		}
 		newDelta := el - last
-		if newDelta == 0 {
-			return false
+		newAscending := isAscending(newDelta)
+		if !isDeltaValid(newDelta) || (key > 1 && ascending != newAscending) {
+			part1 := utils.RemoveIndex(report, key-1)
+			part2 := utils.RemoveIndex(report, key)
+			return isSafe(part1, tolerance-1) || isSafe(part2, tolerance-1)
 		}
-		if newDelta > 0 && delta < 0 {
-			return false
-		}
-		if newDelta < 0 && delta > 0 {
-			return false
-		}
-
-		if el-last < 1 || el-last > 3 {
-			return false
-		}
-		delta = newDelta
+		ascending = newAscending
 		last = el
 	}
+	return true
+}
 
+func isAscending(diff int) bool {
+	return diff > 0
+}
+
+func isDeltaValid(delta int) bool {
+	var diff int
+	if delta < 0 {
+		diff = -delta
+	} else {
+		diff = delta
+	}
+	if diff < 1 || diff > 3 {
+		return false
+	}
 	return true
 }
 

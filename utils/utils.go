@@ -31,3 +31,14 @@ func SumIntList(list []int) (sum int) {
 	}
 	return
 }
+
+func RemoveIndex(list []int, index int) []int {
+	newList := []int{}
+	for key, el := range list {
+		if key == index {
+			continue
+		}
+		newList = append(newList, el)
+	}
+	return newList
+}
