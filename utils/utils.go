@@ -25,6 +25,12 @@ func ReadFile(path string) (fileLines []string) {
 	return fileLines
 }
 
+func ReadFileString(path string) string {
+	dat, err := os.ReadFile(path)
+	CheckError(err)
+	return string(dat)
+}
+
 func SumIntList(list []int) (sum int) {
 	for _, element := range list {
 		sum += element

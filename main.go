@@ -3,6 +3,7 @@ package main
 import (
 	"AdventOfCode2024/day1"
 	"AdventOfCode2024/day2"
+	"AdventOfCode2024/day3"
 	"fmt"
 	"os"
 	"strings"
@@ -26,6 +27,14 @@ func main() {
 			day2.SolvePart1()
 		} else {
 			day2.SolvePart2()
+		}
+		return
+	}
+	if dayArg == "3" {
+		if partArg == "1" {
+			day3.SolvePart1()
+		} else {
+			day3.SolvePart2()
 		}
 		return
 	}
