@@ -4,6 +4,7 @@ import (
 	"AdventOfCode2024/day1"
 	"AdventOfCode2024/day2"
 	"AdventOfCode2024/day3"
+	"AdventOfCode2024/day4"
 	"fmt"
 	"os"
 	"strings"
@@ -38,6 +39,12 @@ func main() {
 		}
 		return
 	}
+	if dayArg == "4" {
+		if partArg == "1" {
+			day4.SolvePart1()
+		} else {
+			day4.SolvePart2()
+		}
+	}
 	fmt.Println("Not solved yet...")
-
 }
